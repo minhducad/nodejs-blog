@@ -1,5 +1,5 @@
 const express = require("express");
-const ejs = require("ejs"); // Important
+require("ejs"); // Important
 
 const app = express();
 

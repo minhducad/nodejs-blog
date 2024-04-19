@@ -30,8 +30,7 @@ app.use(express.static("public"));
 
 // GET, POST, PUT/PATCH, DELETE (CRUD)
 app.get("/posts/new", async (req, res) => {
-    // open create.ejs page
-    res.render("create");
+    res.render("create"); // open create.ejs page
 });
 
 app.post("/posts/store", async (req, res) => {

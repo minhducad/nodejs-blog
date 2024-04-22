@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const {
     addPost,
+    listPosts,
     getPost,
     updatePost,
     removePost,
@@ -54,8 +55,21 @@ app.post("/posts/store", async (req, res) => {
     }
 });
 
-app.get("/", (req, res) => {
-    res.render("index");
+app.get("/posts", async (req, res) => {
+    const posts = await listPosts();
+
+    res.status(200).json({
+        status: "success",
+        data: posts,
+    });
+});
+
+app.get("/", async (req, res) => {
+    const posts = await listPosts();
+
+    res.render("index", {
+        posts: posts,
+    });
 });
 
 app.get("/about", (req, res) => {
@@ -66,8 +80,15 @@ app.get("/contact", (req, res) => {
     res.render("contact");
 });
 
-app.get("/post", (req, res) => {
-    res.render("post");
+// http://localhost:5000/post/662658090468a546b9fe65dd
+app.get("/post/:id", async (req, res) => {
+    const postId = req.params.id; // abcas23fdksalfasd
+
+    const post = await getPost(postId);
+
+    res.render("post", {
+        post: post,
+    });
 });
 
 app.listen(5000, () => {

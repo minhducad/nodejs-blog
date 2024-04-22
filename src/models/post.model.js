@@ -9,6 +9,13 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: [true, "Body is required, please fill the body!"],
     },
+    username: {
+        type: String,
+    },
+    postedAt: {
+        type: Date,
+        default: new Date(),
+    },
 });
 
 const PostModel = mongoose.model("Post", postSchema);

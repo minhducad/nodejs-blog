@@ -4,9 +4,16 @@ const addPost = async (title, body) => {
     const post = await PostModel.create({
         title: title,
         body: body,
+        postedAt: new Date(),
     });
 
     return post;
+};
+
+const listPosts = async () => {
+    const posts = await PostModel.find();
+
+    return posts;
 };
 
 const getPost = async (id) => {
@@ -15,7 +22,8 @@ const getPost = async (id) => {
     return post;
 };
 
-const updatePost = async (id, arg) => { // arg: arguments
+const updatePost = async (id, arg) => {
+    // arg: arguments
     // argument
     const updatedPost = await PostModel.findByIdAndUpdate(id, arg, {
         new: true,
@@ -31,6 +39,7 @@ const removePost = async (id) => {
 
 module.exports = {
     addPost,
+    listPosts,
     getPost,
     updatePost,
     removePost,

@@ -1,10 +1,11 @@
 const PostModel = require("../models/post.model");
 
-const addPost = async (title, body) => {
+const addPost = async (title, body, imageString) => {
     const post = await PostModel.create({
         title: title,
         body: body,
         postedAt: new Date(),
+        image: "/upload/" + imageString,
     });
 
     return post;

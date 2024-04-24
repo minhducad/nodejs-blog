@@ -40,6 +40,7 @@
                                 id="contactForm"
                                 action="/posts/store"
                                 method="post"
+                                enctype="multipart/form-data"
                             >
                                 <div class="form-floating">
                                     <input
@@ -73,6 +74,22 @@
                                         data-sb-feedback="email:required"
                                     >
                                         An body is required.
+                                    </div>
+                                </div>
+
+                                <div class="control-group mt-3">
+                                    <div
+                                        class="form-group floating-label-form-group controls"
+                                    >
+                                        <label for="blog-image-input"
+                                            >Image</label
+                                        >
+                                        <input
+                                            type="file"
+                                            class="form-control"
+                                            id="blog-image-input"
+                                            name="image"
+                                        />
                                     </div>
                                 </div>
 

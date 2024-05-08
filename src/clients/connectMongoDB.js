@@ -11,3 +11,6 @@ const connectMongoDB = () => {
 };
 
 module.exports = connectMongoDB;
+
+// Model -> Service -> Controller
+// trim('  abc sdf ') = 'abc sdf'

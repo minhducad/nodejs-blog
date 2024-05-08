@@ -1,4 +1,4 @@
-const { addPost, listPosts, getPost } = require("../routes/post.routes");
+const { addPost, listPosts, getPost } = require("../service/post.service");
 const { v4: uuidv4 } = require("uuid");
 const path = require("path");
 

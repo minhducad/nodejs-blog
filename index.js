@@ -14,6 +14,10 @@ const {
     redirectContactController,
 } = require("./src/controllers/util.controller");
 const connectMongoDB = require("./src/clients/connectMongoDB");
+const {
+    redirectSignUpController,
+    registerController,
+} = require("./src/controllers/user.controller");
 
 const app = express();
 
@@ -32,7 +36,7 @@ app.use(express.static("public"));
 // Use file upload, allow to store file
 app.use(fileUpload());
 
-// GET, POST, PUT/PATCH, DELETE (CRUD)
+// Route Posts
 app.get("/posts/new", redirectNewPostPageController);
 
 app.post("/posts/store", validateMiddleware, createNewPostController);
@@ -43,8 +47,11 @@ app.get("/about", redirectAboutController);
 
 app.get("/contact", redirectContactController);
 
-// http://localhost:5000/post/662658090468a546b9fe65dd
 app.get("/post/:id", getPostByIdController);
+
+// Route Users
+app.get("/auth/register", redirectSignUpController);
+app.post("/users/register", registerController);
 
 app.listen(5000, () => {
     console.log("Go to http://localhost:5000");

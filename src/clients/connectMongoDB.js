@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
-const connectMongoDB = () => {
+const connectMongoDB = async () => {
     // Connect MongoDB
     try {
-        mongoose.connect("mongodb://localhost:27017/blog");
+        await mongoose.connect("mongodb://localhost:27017/blog");
         console.log("Connected to MongoDB!");
     } catch (error) {
         console.log("Cannot connect MongoDB", error);

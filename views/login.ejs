@@ -15,7 +15,7 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="page-heading">
-                            <h1>Register a new account</h1>
+                            <h1>Log in</h1>
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                         <div class="my-5">
                             <form
                                 id="contactForm"
-                                action="/users/register"
+                                action="/users/login"
                                 method="post"
                                 enctype="multipart/form-data"
                             >
@@ -68,21 +68,6 @@
                                         A password is required.
                                     </div>
                                 </div>
-                                <div class="form-floating">
-                                    <input
-                                        class="form-control"
-                                        id="confirmPassword"
-                                        name="confirmPassword"
-                                        type="password"
-                                        placeholder="Enter your password..."
-                                    />
-                                    <label for="confirmPassword"
-                                        >Confirm password</label
-                                    >
-                                    <div class="invalid-feedback">
-                                        A confirmation password is required.
-                                    </div>
-                                </div>
 
                                 <br />
                                 <!-- Submit success message-->
@@ -117,7 +102,7 @@
                                     id="submitButton"
                                     type="submit"
                                 >
-                                    Sign up
+                                    Log in
                                 </button>
                             </form>
                         </div>

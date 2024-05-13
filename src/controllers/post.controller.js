@@ -9,7 +9,7 @@ const redirectNewPostPageController = (req, res) => {
 const createNewPostController = async (req, res) => {
     // const title = req.body.title;
     // const body = req.body.body;
-    const{ title, body } = req.body; // for short
+    const { title, body } = req.body; // for short
 
     try {
         const image = req.files.image;

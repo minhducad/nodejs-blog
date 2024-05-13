@@ -1,4 +1,5 @@
-const { createUser } = require("../service/user.service");
+const { createUser, loginService } = require("../service/user.service");
+const bcrypt = require("bcrypt");
 
 const redirectSignUpController = (req, res) => {
     res.render("register"); // render register.ejs
@@ -7,20 +8,48 @@ const redirectSignUpController = (req, res) => {
 const registerController = async (req, res) => {
     try {
         const data = req.body;
-        const user = await createUser(data);
-        // res.redirect("/");
-        res.status(200).json({
-            status: "success",
-            data: {
-                user: user,
-            },
-        });
+
+        // Create new user
+        await createUser(data);
+
+        res.redirect("/");
+        // res.status(200).json({
+        //     status: "success",
+        //     data: {
+        //         user: user,
+        //     },
+        // });
     } catch (error) {
-        res.status(400).json({
-            status: "error",
-            error: error,
-        });
+        // res.status(400).json({
+        //     status: "error",
+        //     error: error,
+        // });
+        res.redirect("/auth/register");
     }
 };
 
-module.exports = { redirectSignUpController, registerController };
+const redirectLoginController = (req, res) => {
+    res.render("login");
+};
+
+const loginController = async (req, res) => {
+    const data = req.body;
+
+    // 1. Check if user existed in DB
+    const user = await loginService(data);
+
+    // 2. Check if password matches
+    bcrypt.compare(data.password, user.password, function (err, result) {
+        // 3. If OK, redirect homepage
+        if (result) {
+            res.redirect("/");
+        } else res.redirect("/auth/login");
+    });
+};
+
+module.exports = {
+    redirectSignUpController,
+    registerController,
+    redirectLoginController,
+    loginController,
+};

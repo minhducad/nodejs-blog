@@ -17,15 +17,14 @@ const connectMongoDB = require("./src/clients/connectMongoDB");
 const {
     redirectSignUpController,
     registerController,
+    redirectLoginController,
+    loginController,
 } = require("./src/controllers/user.controller");
 
 const app = express();
 
 // Set template engine
 app.set("view engine", "ejs");
-
-// Connect MongoDB
-connectMongoDB();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -52,7 +51,12 @@ app.get("/post/:id", getPostByIdController);
 // Route Users
 app.get("/auth/register", redirectSignUpController);
 app.post("/users/register", registerController);
+app.get("/auth/login", redirectLoginController);
+app.post("/users/login", loginController);
 
-app.listen(5000, () => {
+app.listen(5000, async () => {
+    // Connect MongoDB
+    await connectMongoDB();
+
     console.log("Go to http://localhost:5000");
 });

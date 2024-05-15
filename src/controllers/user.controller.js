@@ -42,8 +42,15 @@ const loginController = async (req, res) => {
     bcrypt.compare(data.password, user.password, function (err, result) {
         // 3. If OK, redirect homepage
         if (result) {
+            req.session.userId = user._id;
             res.redirect("/");
         } else res.redirect("/auth/login");
+    });
+};
+
+const logoutController = (req, res) => {
+    req.session.destroy(() => {
+        res.redirect("/");
     });
 };
 
@@ -52,4 +59,5 @@ module.exports = {
     registerController,
     redirectLoginController,
     loginController,
+    logoutController,
 };

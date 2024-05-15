@@ -10,6 +10,7 @@ const createNewPostController = async (req, res) => {
     // const title = req.body.title;
     // const body = req.body.body;
     const { title, body } = req.body; // for short
+    const username = req.session.username;
 
     try {
         const image = req.files.image;
@@ -19,7 +20,7 @@ const createNewPostController = async (req, res) => {
         // Save image in upload file to server side
         image.mv(path.resolve(__dirname, "../../public/upload", imageName));
 
-        const newPost = await addPost(title, body, imageName);
+        const newPost = await addPost(title, body, imageName, username);
 
         // Move to the post page
         res.redirect(`/post/${newPost.id}`);
